@@ -1,4 +1,5 @@
 from flask import Flask
+from flask_cors import CORS
 from flask_sqlalchemy import SQLAlchemy
 from datetime import timedelta
 from flask_jwt_extended import JWTManager
@@ -8,7 +9,7 @@ db = SQLAlchemy()
 
 def create_app():
     app = Flask(__name__)
-
+    CORS(app)
     #app configuration
     app.config['SECRET_KEY'] = 'some-secret-key'
     app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql+pymysql://myuser:mypassword@db/mydatabase'

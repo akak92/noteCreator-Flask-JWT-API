@@ -19,17 +19,68 @@ function login() {
     })
     .then(response => {
         if (response.ok) { // Check if response status is OK (status code 200-299)
-            document.getElementById('message').classList.remove('error');
-            document.getElementById('message').classList.add('success');
-            document.getElementById('message').innerText = "Login successful!";
+            // Parse response body as JSON
+            return response.json();
         } else {
-            document.getElementById('message').classList.remove('success');
-            document.getElementById('message').classList.add('error');
-            document.getElementById('message').innerText = "Login failed. Please try again.";
+            throw new Error('Login failed. Please try again.');
         }
-        document.getElementById('message').style.display = 'block'; // Show message
+    })
+    .then(data => {
+        // Extract access token from response
+        var accessToken = data.access_token;
+        if (!accessToken) {
+            throw new Error('Access token not found in response.');
+        }
+
+        // Store access token in local storage
+        localStorage.setItem('accessToken', accessToken);
+
+        // Fetch panel page
+        fetchPanelPage();
     })
     .catch(error => {
         console.error('Error:', error);
+        // Handle error
+        document.getElementById('message').classList.remove('success');
+        document.getElementById('message').classList.add('error');
+        document.getElementById('message').innerText = "Login failed. Please try again.";
+        document.getElementById('message').style.display = 'block'; // Show message
+    });
+}
+
+// Function to fetch panel page
+function fetchPanelPage() {
+    // Retrieve access token from local storage
+    var accessToken = localStorage.getItem('accessToken');
+
+    // Check if access token exists
+    if (!accessToken) {
+        console.error('Access token not found.');
+        return;
+    }
+
+    // Send GET request to panel page with Authorization header
+    fetch('/panel/check', {
+        method: 'GET',
+        headers: {
+            'Authorization': 'Bearer ' + accessToken
+        }
+    })
+    .then(response => {
+        if (response.ok) {
+            // If response is successful, you can handle the response here
+            console.log('Panel page fetched successfully');
+            console.log(accessToken)
+            window.location.href = '/panel'
+        } else if (response.status === 401) {
+            // Unauthorized, redirect user to login page
+            window.location.href = '/login';
+        } else {
+            throw new Error('Failed to fetch panel page.');
+        }
+    })
+    .catch(error => {
+        console.error('Error:', error);
+        // Handle error
     });
 }
