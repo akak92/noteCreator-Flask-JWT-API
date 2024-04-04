@@ -13,3 +13,11 @@
 ## Description
 
 A simple web application that allows a registered user to create and download Notes.
+
+## Pre - requisites
+
+* Docker & docker-compose
+
+## Instalation
+
+Coming soon.
