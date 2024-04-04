@@ -18,4 +18,28 @@ A simple web application API that allows a registered user to create and downloa
 
 ## Instalation
 
-Coming soon.
+Once you clone this repository, you must do the following steps:
+
+### .env.example file
+
+In order to this example to work, you must rename the `.env.example` a `.env` with the following command:
+```
+mv .env.example .env
+```
+
+### build the docker image
+
+Build docker image using the following command:
+
+```
+ docker-compose up --build --remove-orphans
+ ```
+ That should do it.
+
+ ### Documentation and Use
+
+ You can check the endpoints available in ![Swagger](https://img.shields.io/badge/-Swagger-%23Clojure?style=for-the-badge&logo=swagger&logoColor=white) visiting the following URL:
+
+ ```
+    http://localhost:5000/api/v1/swagger/
+ ```

@@ -1,18 +1,24 @@
 from flask import Flask
-from flask_cors import CORS
 from flask_sqlalchemy import SQLAlchemy
 from datetime import timedelta
 from flask_jwt_extended import JWTManager
 from flask_swagger_ui import get_swaggerui_blueprint
+from dotenv import load_dotenv
+import os
 
 db = SQLAlchemy()
 
 def create_app():
+    load_dotenv()
+    db_user = os.getenv("DB_USER")
+    db_password = os.getenv("DB_PASSWORD")
+    db_host = os.getenv("DB_HOST")
+    db_name = os.getenv("DB_NAME")
+
     app = Flask(__name__)
-    CORS(app)
     #app configuration
     app.config['SECRET_KEY'] = 'some-secret-key'
-    app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql+pymysql://myuser:mypassword@db/mydatabase'
+    app.config['SQLALCHEMY_DATABASE_URI'] = f"mysql+pymysql://{db_user}:{db_password}@{db_host}/{db_name}"
 
     #jwt configuration
     app.config['JWT_SECRET_KEY'] = 'my-jwt-secret-key'
