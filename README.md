@@ -22,7 +22,7 @@ Once you clone this repository, you must do the following steps:
 
 ### .env.example file
 
-In order to this example to work, you must rename the `.env.example` a `.env` with the following command:
+In order for this example to work, you must rename the `.env.example` to `.env` with the following command:
 ```
 mv .env.example .env
 ```
@@ -38,8 +38,12 @@ Build docker image using the following command:
 
  ### Documentation and Use
 
- You can check the endpoints available in ![Swagger](https://img.shields.io/badge/-Swagger-%23Clojure?style=for-the-badge&logo=swagger&logoColor=white) visiting the following URL:
+ You can check the endpoints available in ![Swagger](https://img.shields.io/badge/-Swagger-%23Clojure?style=for-the-badge&logo=swagger&logoColor=white) visiting the following URL in a browser:
 
  ```
     http://localhost:5000/api/v1/swagger/
  ```
+
+You can use ![Postman](https://img.shields.io/badge/Postman-FF6C37?style=for-the-badge&logo=postman&logoColor=white) for testing.
+
+ 
