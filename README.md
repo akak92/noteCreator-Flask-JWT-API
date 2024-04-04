@@ -27,7 +27,7 @@ In order for this example to work, you must rename the `.env.example` to `.env` 
 mv .env.example .env
 ```
 
-### build the docker image
+### Build the docker image
 
 Build docker image using the following command:
 
