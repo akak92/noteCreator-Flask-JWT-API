@@ -23,7 +23,8 @@ def get_notes():
 @jwt_required()
 def get_note(id_note):
     try:
-        note = Note.query.filter_by(id_note=int(id_note)).first()
+        user_identity = get_jwt_identity()
+        note = Note.query.filter_by(id_note=int(id_note), id_user=user_identity.get('id_user')).first()
         if note is None:
             response = {'message' : 'Note not found'}, 404
         else:
@@ -61,7 +62,9 @@ def edit_note():
         title = result['title']
         content = result['content']
 
-        note = Note.query.filter_by(id_note=int(id_note)).first()
+        user_identity = get_jwt_identity()
+
+        note = Note.query.filter_by(id_note=int(id_note), id_user=user_identity.get('id_user')).first()
         if note is None:
             response = {'message' : 'Note not found'}, 404
         else:
@@ -77,7 +80,8 @@ def edit_note():
 @jwt_required()
 def delete_note(id_note):
     try:
-        note = Note.query.filter_by(id_note=int(id_note)).first()
+        user_identity = get_jwt_identity()
+        note = Note.query.filter_by(id_note=int(id_note), id_user=user_identity.get('id_user')).first()
         if note is None:
             response = {'message' : 'Note not found'}, 404
         else:
