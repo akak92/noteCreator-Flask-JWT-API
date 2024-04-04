@@ -9,7 +9,7 @@
 
 ## Description
 
-A simple web application that allows a registered user to create and download Notes.
+A simple web application API that allows a registered user to create and download Notes.
 
 ## Pre - requisites
 
