@@ -40,7 +40,4 @@ def create_app():
     app.register_blueprint(note_bp, url_prefix='/api/v1')
     from api.controllers.Auth import auth_bp
     app.register_blueprint(auth_bp, url_prefix='/api/v1')
-    from api.controllers.Render import render_bp
-    app.register_blueprint(render_bp)
-
     return app

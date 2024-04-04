@@ -1,8 +1,7 @@
-from flask import Blueprint, request, jsonify, redirect, url_for
-from flask_jwt_extended import create_access_token, jwt_required, unset_jwt_cookies
-from api import db
-from api.models import Note, User
+from flask import Blueprint, request
 from flask_jwt_extended import jwt_required, get_jwt_identity
+from api import db
+from api.models import Note
 
 note_bp = Blueprint('note', __name__)
 
