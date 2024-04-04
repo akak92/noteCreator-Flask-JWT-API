@@ -1,0 +1,15 @@
+CREATE TABLE IF NOT EXISTS User (
+    id_user INT AUTO_INCREMENT PRIMARY KEY,
+    name VARCHAR(128) NOT NULL,
+    last_name VARCHAR(128) NOT NULL,
+    username VARCHAR(256) NOT NULL,
+    password VARCHAR(256)
+);
+
+CREATE TABLE IF NOT EXISTS Note (
+    id_note INT AUTO_INCREMENT PRIMARY KEY,
+    id_user INT NOT NULL,
+    title VARCHAR(128) NOT NULL,
+    content VARCHAR(1024),
+    FOREIGN KEY (id_user) REFERENCES User(id_user)
+);
